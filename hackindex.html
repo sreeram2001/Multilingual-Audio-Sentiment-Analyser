@@ -1,0 +1,107 @@
+<!Doctype html>
+<head>
+    <title> Speech Mood Analyser </title>
+    <meta name="viewport" content="width=device-width", initial-scale=1.0">
+    <meta charset="utf-8">
+
+<style>
+
+
+	h1 {text-align: center;}
+	p {text-align: center;}
+	a {text-align: center;}
+    body
+    {
+        background-color: rgb(248, 157, 21);
+        color: black;
+
+    }
+
+    .file_upload
+    {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+    }
+
+    .file_upload_input
+    {
+        display: none;
+    }
+
+    .file_upload_button
+    {
+        -webkit-appearance: none;
+        background: cyan;
+        border: 2px solid #00745D;
+        outline-color: none;
+        border-radius: 5px;
+        padding: 0.5em 0.8em;
+        margin-right: 15px;
+        color: hsl(0, 0%, 0%);
+        font-size: 2em;
+        font-family: 'Times New Roman', Times, serif;
+        cursor: pointer;
+        align-content: center;
+        font-weight: bold;
+
+    }
+
+    .file_upload_button:active
+    {
+        background: #00745D;
+    }
+
+    .file-upload_label 
+    {
+        max-width: 250px;
+        font-size: 0.95em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+</style>
+</head>
+
+<body>
+    <h1> Sentiment and Mood Analyser using Speech </h1>
+    <a class="file_upload">
+        <input class="file_upload_input" type="file" name="myFile" id="myFile">
+        <button class="file_upload_button" type="button"> Choose File </button>
+        <span class="file_upload_label">No File Chosen</span>
+    </a>
+
+    <script>
+        Array.prototype.forEach.call(document.querySelectorAll('.file_upload_button'),function(button)
+        {
+            const hiddenInput = button.parentElement.querySelector(".file_upload_input");
+            const label = button.parentElement.querySelector(".file_upload_label");
+            const defaultLabelText = 'No File Chosen';
+
+            label.textContent = defaultLabelText;
+            label.title = defaultLabelText;
+
+            button.addEventListener('click',function()
+            {
+                hiddenInput.click();
+
+            });
+
+            hiddenInput.addEventListener('change', function()
+            {
+                const filenameList = Array.prototype.map.call(hiddenInput.files ,function(file)
+                {
+                    return file.name;
+                });
+
+                label.textContent = filenameList.join(", ") || defaultLabelText;
+                label.title = label.textContent;
+            });
+
+
+        });
+
+    </script>
+</body>
